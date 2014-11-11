@@ -1,0 +1,64 @@
+<div class="RedWar">
+
+  <ion-tabs class="tabs-positive tabs-icon-left">
+
+    <ion-tab title="Home" icon-on="ion-ios7-home" icon-off="ion-ios7-home-outline">
+    
+      <ion-content ng-controller="main.players.dashboard as ctrl">
+
+        <div class="item">Start a new game from here, {{ctrl.userData.dataUsername}}.</div>
+        <ng-form name="form">
+          <div class="list">
+
+              <label class="item item-input">
+                <input minlength="5" required type="text" placeholder="Enter a title for your game." ng-model="ctrl.newGame.dataGamename">
+              </label>
+              
+              <label class="item item-input">
+                <input minlength="5" required type="password" placeholder="Optionally, enter a password." ng-model="ctrl.newGame.dataGamePassphrase">
+              </label>
+              
+              <ul class="list">
+            
+                <li class="item item-toggle">
+                   Make it visible to everyone?
+                   <label for="visibility" class="toggle toggle-balanced">
+                     <input id="visibility" name="visibility" ng-model="dataGameVisibility" type="checkbox">
+                     <div class="track">
+                       <div class="handle"></div>
+                     </div>
+                   </label>
+                </li>
+
+              </ul>
+              
+              
+              <div class="item item-button">
+                    <button ng-click="ctrl.newGame()" class="button button-positive">Start Game</button>
+              </div>
+          </div>
+        </ng-form>
+      </ion-content>
+
+    </ion-tab>
+
+    <ion-tab title="Games" icon-on="ion-ios7-keypad" icon-off="ion-ios7-keypad-outline">
+      <ion-content ng-controller="main.players.games as ctrl">
+        <h1>Games</h1>
+        <ul ng-repeat="game in ctrl.games">
+          <li>{{game.name}}</li>
+        </ul>
+      </ion-content>
+    </ion-tab>
+
+    <ion-tab title="Settings" icon-on="ion-ios7-gear" icon-off="ion-ios7-gear-outline">
+      <ion-content ng-controller="main.players.settings as ctrl">
+        <h1>Settings</h1>
+        <ul ng-repeat="setting in ctrl.settings">
+          <li>{{setting.name}} :: {{setting.value}}</li>
+        </ul>
+      </ion-content>    </ion-tab>
+
+  </ion-tabs>
+
+</div>

@@ -1,0 +1,59 @@
+<div ng-controller="main.players.login as ctrl">
+
+    <ion-header-bar align-title="left" class="bar-positive">
+        <h1 class="title">RedWar</h1>
+    </ion-header-bar>
+    <ion-content>
+        <ng-form name="loginForm">
+
+            <div class="list">
+                <div ng-if="!signUp">
+                
+                    <label class="item item-input">
+                        <input minlength="5" required type="text" placeholder="Enter your Username" ng-model="ctrl.form.signIn.data.username">
+                    </label>
+                    
+                    <label class="item item-input">
+                        <input minlength="5" required type="password" placeholder="Enter your Password" ng-model="ctrl.form.signIn.data.passphrase">
+                    </label>
+                    
+                    <div class="item item-divider" ng-show="ctrl.errors.password.invalid">Sorry, that's not the right password.</div>
+                    
+                </div>
+
+                <div ng-if="signUp">
+        
+                    <label class="item item-input">
+                        <input ng-change="ctrl.errors.clear()" name="username" ng-model="ctrl.form.signUp.data.username" ng-minlength="4" ng-pattern="/[a-zA-Z0-9^ ]/" type="text" placeholder="Create your Username">
+                    </label>
+                
+                    <div class="item item-divider" ng-show="ctrl.errors.username.duplicate">Sorry, that username is already in use.</div>
+                    <div class="item item-divider" ng-show="loginForm.username.$error.minlength">I need at least 4 characters.</div>
+                    <div class="item item-divider" ng-show="loginForm.username.$error.pattern">Sorry, no funny characters.</div>
+
+                    <label class="item item-input">
+                        <input ng-minlength="5" name="password" ng-model="ctrl.form.signUp.data.passphrase" type="password" placeholder="Create your Password" required>
+                    </label>
+
+                </div>
+
+
+                <div class="item item-checkbox">
+                    <label class="checkbox">
+                        <input type="checkbox" ng-model="signUp">
+                    </label>
+                    I want to Sign Up!
+                </div>
+                <div class="item item-button">
+                    <button ng-click="ctrl.signIn()" ng-if="!signUp" class="button button-positive">Sign In</button>
+                    <button ng-click="ctrl.signUp()" ng-if="signUp" class="button button-energized">Sign Up</button>
+                </div>
+            </div>
+
+        </ng-form>
+
+    </ion-content>
+    <ion-footer-bar align-title="left" class="bar-positive">
+
+    </ion-footer-bar>
+</div>
